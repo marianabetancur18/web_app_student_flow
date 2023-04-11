@@ -1,0 +1,1 @@
+from materias import lista_materias_cursadas
