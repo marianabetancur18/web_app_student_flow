@@ -11,7 +11,7 @@ app = FastAPI()
 historia = APIRouter(prefix='/historia')
 
 
-@historia.get('/historia', status_code=200)
+@historia.post('/historia', status_code=200)
 async def obtener_historia(
         response: Response,
         archivo_historia: UploadFile = File(...)):
@@ -24,6 +24,7 @@ async def obtener_historia(
                 archivo_en_memoria.seek(0)
                 texto = archivo_en_memoria.read()
 
+        # TODO: completar las funciones de procesar historia
         data = procesar_historia(texto)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e)
