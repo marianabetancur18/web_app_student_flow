@@ -7,6 +7,7 @@ def procesar_historia(historia_academica: str):
     #  extracción de cada parte necesaria para el front
     respuesta = {
         'lista_materias_cursadas': lista_materias_cursadas(historia_academica)
+        
     }
 
     return respuesta
