@@ -17,19 +17,14 @@ async def obtener_historia(
         archivo_historia: UploadFile = File(...)):
     """Consulta los id y nombres de las cámaras"""
     try:
-        async with archivo_historia.file as archivo_temporal:
-            with TemporaryFile(mode="w+") as archivo_en_memoria:
-                contenido = archivo_temporal.read()
-                archivo_en_memoria.write(contenido)
-                archivo_en_memoria.seek(0)
-                texto = archivo_en_memoria.read()
+        texto = archivo_historia.file.read().decode()
 
         # TODO: completar las funciones de procesar historia
         data = procesar_historia(texto)
     except Exception as e:
         raise HTTPException(status_code=500, detail=e)
 
-    return data, 200
+    return data
 
 app.include_router(historia)
 

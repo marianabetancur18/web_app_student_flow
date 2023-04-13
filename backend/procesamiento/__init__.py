@@ -1,1 +1,1 @@
-from materias import lista_materias_cursadas
+from procesamiento.materias import lista_materias_cursadas

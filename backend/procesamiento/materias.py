@@ -39,6 +39,7 @@ def lista_materias_cursadas(
             ]
 
     """
+    texto_historia_academica = texto_historia_academica.replace('\r', '')
 
     patron = r"CALIFICACIÓN\n([\S\s]*)\nResumen de créditos"
     materias_cursadas = str(
