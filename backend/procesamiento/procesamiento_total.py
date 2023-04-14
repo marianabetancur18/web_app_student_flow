@@ -4,6 +4,7 @@ from io import StringIO
 
 from procesamiento.materias import lista_materias_cursadas
 from procesamiento.materias import lista_materias_faltantes
+from procesamiento.materias import porcentaje_avance
 
 
 def procesar_historia(historia_academica: str):
@@ -27,7 +28,9 @@ def procesar_historia(historia_academica: str):
 
     respuesta = {
         'lista_materias_cursadas': lista_materias_cursadas(materias_cursadas),
-        # 'materias_faltantes': lista_materias_faltantes(materias_cursadas)
+        'materias_faltantes': lista_materias_faltantes(materias_cursadas),
+        'porcentaje_avance': porcentaje_avance(),
+
     }
 
     return respuesta

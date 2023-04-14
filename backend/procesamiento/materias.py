@@ -90,3 +90,26 @@ def lista_materias_faltantes(
     pensum = obtener_pensum()
 
     pass
+
+
+def porcentaje_avance(materias_cursadas: pd.DataFrame):
+    """
+    Obtiene el porcentaje por tipología de materia.
+
+    Returns:
+        .. code-block:: python
+        {
+            "avance_disciplinar_total": "58 %",
+            "avance_disciplinar_optativa": "49,5 %",
+            "avance_disciplinar_obligatoria": "32 %",
+            "avance_fundamentacion_total": "51 %",
+            "avance_fundamentacion_obligatoria": "7 %",
+            "avance_fundamentacion_optatativa": "4 %"
+        }
+
+    """
+
+    pensum = obtener_pensum()
+
+    pass
+
