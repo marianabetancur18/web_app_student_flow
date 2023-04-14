@@ -1,7 +1,6 @@
 # External libraries
 import uvicorn
 from fastapi import FastAPI, APIRouter, Response, File, UploadFile, HTTPException
-from tempfile import TemporaryFile
 
 # Own libraries
 from procesamiento.procesamiento_total import procesar_historia

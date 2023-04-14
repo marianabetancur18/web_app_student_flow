@@ -1,12 +1,10 @@
-import re
 import pandas as pd
-from io import StringIO
 
 from utils.abrir_data import obtener_pensum
 
 
 def lista_materias_cursadas(
-        texto_historia_academica: str,
+        materias_cursadas: pd.DataFrame,
         periodo: list = None,
         tipo: list = None) -> list:
 
@@ -15,8 +13,7 @@ def lista_materias_cursadas(
      ctrl+a en el sia.
 
     Args:
-        texto_historia_academica: texto que obtiene toda la historia obtenida con
-         ctrl+a en el sia
+        materias_cursadas: contiene las materias cursadas
         periodo: periodo académico en caso de que se desee filtrar
         tipo: tipo de materia en caso de que se quiera fitlrar
 
@@ -41,17 +38,6 @@ def lista_materias_cursadas(
             ]
 
     """
-    texto_historia_academica = texto_historia_academica.replace('\r', '')
-
-    patron = r"CALIFICACIÓN\n([\S\s]*)\nResumen de créditos"
-    materias_cursadas = str(
-        re.search(patron, texto_historia_academica).group(1))
-    materias_cursadas = re.sub(r"\nAPROBADA|\nREPROBADO", "", materias_cursadas)
-
-    cols_names = ["ASIGNATURA", "CREDITOS", "TIPO", "PERIODO", "CALIFICACION"]
-    materias_cursadas = pd.read_table(
-        StringIO(materias_cursadas), sep="\t", names=cols_names
-    )
 
     if periodo is not None:
         # TODO: separar periodo academico y (validaciones o regular)
@@ -70,7 +56,7 @@ def lista_materias_cursadas(
 
 
 def lista_materias_faltantes(
-        texto_historia_academica: str,
+        materias_cursadas: pd.DataFrame,
         periodo: list = None,
         tipo: list = None) -> list:
 
@@ -79,8 +65,7 @@ def lista_materias_faltantes(
      ctrl+a en el sia.
 
     Args:
-        texto_historia_academica: texto que obtiene toda la historia obtenida con
-         ctrl+a en el sia
+        materias_cursadas: contiene las materias cursadas
         periodo: periodo académico en caso de que se desee filtrar
         tipo: tipo de materia en caso de que se quiera fitlrar
 
