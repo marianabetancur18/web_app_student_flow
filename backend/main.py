@@ -14,7 +14,6 @@ historia = APIRouter(prefix='/historia')
 async def obtener_historia(
         response: Response,
         archivo_historia: UploadFile = File(...)):
-    """Consulta los id y nombres de las cámaras"""
     try:
         texto = archivo_historia.file.read().decode()
 
