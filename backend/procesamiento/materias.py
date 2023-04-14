@@ -29,10 +29,11 @@ def crear_df_materias_cursadas(texto_historia_academica: str) -> pd.DataFrame:
     materias_cursadas[['NOMBRE', 'CODIGO']] = materias_cursadas[
         'NOMBRE-CODIGO'].str.split('(', expand=True)
 
-    materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip()
-    materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip(')')
+    materias_cursadas.drop('NOMBRE-CODIGO', axis=1, inplace=True)
 
-    materias_cursadas.to_csv('materias_cursadas.csv', index=False)
+    materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip()
+    materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip('(')
+    materias_cursadas['CODIGO'] = materias_cursadas['CODIGO'].str.replace(')', '')
 
     return materias_cursadas
 

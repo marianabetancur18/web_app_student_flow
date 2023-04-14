@@ -15,7 +15,7 @@ def procesar_historia(historia_academica: str):
         'lista_materias_cursadas': lista_materias_cursadas(materias_cursadas),
         'materias_faltantes': lista_materias_faltantes(materias_cursadas),
         'porcentaje_avance': porcentaje_avance(materias_cursadas),
-        'estimado_semestres_faltantes': estimado_semestres_faltantes()
+        'estimado_semestres_faltantes': estimado_semestres_faltantes(materias_cursadas)
     }
 
     return respuesta
