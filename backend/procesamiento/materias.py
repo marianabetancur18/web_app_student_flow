@@ -141,6 +141,7 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
 
     """
 
+    # TODO: marlon?
     pensum = obtener_pensum()
 
     pass
