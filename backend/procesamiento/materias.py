@@ -1,6 +1,38 @@
 import pandas as pd
+import re
+from io import StringIO
 
 from utils.abrir_data import obtener_pensum
+
+
+def crear_df_materias_cursadas(texto_historia_academica: str) -> pd.DataFrame:
+    """Crea una tabla con las materias cursadas
+
+    Returns:
+        DataFrame con columnas ["CREDITOS", "TIPO", "PERIODO", "CALIFICACION"]
+
+    """
+    texto_historia_academica = texto_historia_academica.replace('\r', '')
+
+    patron = r"CALIFICACIÓN\n([\S\s]*)\nResumen de créditos"
+    materias_cursadas = str(
+        re.search(patron, texto_historia_academica).group(1))
+    materias_cursadas = re.sub(r"\nAPROBADA|\nREPROBADO", "", materias_cursadas)
+
+    cols_names = ["NOMBRE-CODIGO", "CREDITOS", "TIPO", "PERIODO",
+                  "CALIFICACION"]
+
+    materias_cursadas = pd.read_table(
+        StringIO(materias_cursadas), sep="\t", names=cols_names
+    )
+
+    materias_cursadas[['NOMBRE', 'CODIGO']] = materias_cursadas[
+        'NOMBRE-CODIGO'].str.split('(', expand=True)
+
+    materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip()
+    materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip(')')
+
+    return materias_cursadas
 
 
 def lista_materias_cursadas(

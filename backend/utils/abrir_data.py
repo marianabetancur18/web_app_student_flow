@@ -9,7 +9,7 @@ def obtener_pensum() -> pd.DataFrame:
         un DataFrame con las columnas
     """
 
-    ruta_historia = os.path.join('files', 'historia_academica.csv')
+    ruta_historia = os.path.join('files', 'pensum.csv')
     pensum = pd.read_csv(ruta_historia)
 
     return pensum
