@@ -118,7 +118,7 @@ def lista_materias_faltantes(
             ]
 
     """
-
+    # TODO: daza
     pensum = obtener_pensum()
 
     pass
