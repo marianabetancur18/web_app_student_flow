@@ -32,6 +32,8 @@ def crear_df_materias_cursadas(texto_historia_academica: str) -> pd.DataFrame:
     materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip()
     materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip(')')
 
+    materias_cursadas.to_csv('materias_cursadas.csv', index=False)
+
     return materias_cursadas
 
 
@@ -146,3 +148,18 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
     pass
 
 
+def estimado_semestres_faltantes(materias_cursadas: pd.DataFrame) -> str:
+    """Calcula la cantidad de semestres faltantes basandose en un promedio de
+     materias o créditos vistos por semestre
+
+    Args:
+        materias_cursadas:
+
+    Returns:
+        Cantidad de semestres faltantes.
+
+    """
+
+    pensum = obtener_pensum()
+
+    pass
