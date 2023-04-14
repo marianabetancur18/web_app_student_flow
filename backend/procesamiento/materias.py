@@ -2,6 +2,7 @@ import pandas as pd
 import re
 from io import StringIO
 
+#Comentario
 from utils.abrir_data import obtener_pensum
 
 
@@ -145,4 +146,5 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
     pensum = obtener_pensum()
 
     pass
+
 
