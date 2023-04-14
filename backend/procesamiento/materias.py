@@ -2,6 +2,7 @@ import re
 import pandas as pd
 from io import StringIO
 
+#Comentario
 
 def lista_materias_cursadas(
         texto_historia_academica: str,
