@@ -2,6 +2,8 @@ import re
 import pandas as pd
 from io import StringIO
 
+from utils.abrir_data import obtener_pensum
+
 
 def lista_materias_cursadas(
         texto_historia_academica: str,
@@ -65,3 +67,41 @@ def lista_materias_cursadas(
     lista_materias_cursadas = materias_cursadas.to_dict("records")
 
     return lista_materias_cursadas
+
+
+def lista_materias_faltantes(
+        texto_historia_academica: str,
+        periodo: list = None,
+        tipo: list = None) -> list:
+
+    """
+    Obtiene una lista de las materias faltantes a partir del texto obtenido del
+     ctrl+a en el sia.
+
+    Args:
+        texto_historia_academica: texto que obtiene toda la historia obtenida con
+         ctrl+a en el sia
+        periodo: periodo académico en caso de que se desee filtrar
+        tipo: tipo de materia en caso de que se quiera fitlrar
+
+    Returns:
+        .. code-block:: python
+
+            [
+                {
+                    'ASIGNATURA': 'Desarrollo Web',
+                    'CREDITOS': '3',
+                    'TIPO': 'Disciplinar obligatoria'
+                },
+                {
+                    'ASIGNATURA': 'Ingeniería de requisitos',
+                    'CREDITOS': '3',
+                    'TIPO': 'Disciplinar obligatoria'
+                },
+            ]
+
+    """
+
+    pensum = obtener_pensum()
+
+    pass
