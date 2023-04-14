@@ -146,3 +146,4 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
 
     pass
 
+

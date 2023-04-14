@@ -6,7 +6,7 @@ def obtener_pensum() -> pd.DataFrame:
     """Obtiene el pensum completo de la historia
 
     Returns:
-        un DataFrame con las columnas
+        un DataFrame con las columnas ['CODIGO', 'NOMBRE', 'CREDITOS', 'TIPO', 'PRERREQUISITOS']
     """
 
     ruta_historia = os.path.join('files', 'pensum.csv')
