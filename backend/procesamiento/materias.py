@@ -131,7 +131,7 @@ def lista_materias_faltantes(
         faltantes['TIPO'].str.contains('OBLIGATORIA')].astype('str').to_dict('records')
 
     faltantes_optativas = faltantes[
-        ~faltantes['TIPO'].str.contains('OBLIGATORIA')].astype('str').to_dict('records')
+        faltantes['TIPO'].str.contains('OPTATIVA')].astype('str').to_dict('records')
 
     faltantes = {
         'faltantes_obligatorias': faltantes_obligatorias,
