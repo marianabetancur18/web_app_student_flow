@@ -234,7 +234,14 @@ def estimado_semestres_faltantes(materias_cursadas: pd.DataFrame) -> str:
         Cantidad de semestres faltantes.
 
     """
-
     pensum = obtener_pensum()
+    semestres_cursados = len(materias_cursadas['PERIODO'].unique()) - 1 # Se resta uno porque sale este semestre  
+    creditos_cursados = materias_cursadas['CREDITOS'].sum(axis = 0)
+    promedio_creditos = creditos_cursados / semestres_cursados
+    creditos_pensum = 168
+    creditos_faltantes = creditos_pensum - creditos_cursados
+    semestres_faltantes = str(int(creditos_faltantes/promedio_creditos))
+    return semestres_faltantes
+ 
 
-    pass
+
