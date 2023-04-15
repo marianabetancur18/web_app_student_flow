@@ -2,7 +2,7 @@ import pandas as pd
 import re
 from io import StringIO
 
-#Comentario
+
 from utils.abrir_data import obtener_pensum
 
 
@@ -36,7 +36,6 @@ def crear_df_materias_cursadas(texto_historia_academica: str) -> pd.DataFrame:
     materias_cursadas['NOMBRE'] = materias_cursadas['NOMBRE'].str.strip('(')
     materias_cursadas['CODIGO'] = materias_cursadas['CODIGO'].str.replace(')', '')
 
-    materias_cursadas.to_csv("materias_cursadas.csv",index=False)
 
     return materias_cursadas
 
