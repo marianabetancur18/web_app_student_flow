@@ -123,10 +123,22 @@ def lista_materias_faltantes(
             ]
 
     """
-
     pensum = obtener_pensum()
 
-    pass
+    codigos_materias_cursadas = materias_cursadas['CODIGO']
+    faltantes = pensum[~pensum['CODIGO'].isin(codigos_materias_cursadas)]
+    faltantes_obligatorias = faltantes[
+        faltantes['TIPO'].str.contains('OBLIGATORIA')].astype('str').to_dict('records')
+
+    faltantes_optativas = faltantes[
+        ~faltantes['TIPO'].str.contains('OBLIGATORIA')].astype('str').to_dict('records')
+
+    faltantes = {
+        'faltantes_obligatorias': faltantes_obligatorias,
+        'faltantes_optativas': faltantes_optativas
+    }
+
+    return faltantes
 
 
 def porcentaje_avance(materias_cursadas: pd.DataFrame):
