@@ -7,8 +7,12 @@ import 'react-multi-carousel/lib/styles.css';
 import arrow1 from "../assets/img/arrow1.svg";
 import arrow2 from "../assets/img/arrow2.svg";
 import colorSharp from "../assets/img/color-sharp.png"
+import { useNavigate } from 'react-router-dom';
 
 export const Actions = () => {
+
+  const navigate = useNavigate();
+  console.log(sessionStorage.getItem('file'))
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -40,7 +44,7 @@ export const Actions = () => {
                         <br/>
                         <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme interactions-slider">
                             <div className="item">
-                                <img src={meter1} alt="Image" />
+                                <img src={meter1} alt="Image" onClick={() => navigate('/Progress')}/>
                                 <h5>Progresos</h5>
                             </div>
                             <div className="item">
