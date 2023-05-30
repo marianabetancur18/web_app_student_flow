@@ -1,7 +1,6 @@
 # External libraries
 import uvicorn
 from fastapi import FastAPI, APIRouter, Response, File, UploadFile, HTTPException
-from tempfile import TemporaryFile
 
 # Own libraries
 from procesamiento.procesamiento_total import procesar_historia
@@ -15,7 +14,6 @@ historia = APIRouter(prefix='/historia')
 async def obtener_historia(
         response: Response,
         archivo_historia: UploadFile = File(...)):
-    """Consulta los id y nombres de las cámaras"""
     try:
         texto = archivo_historia.file.read().decode()
 
