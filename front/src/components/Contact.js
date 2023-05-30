@@ -24,14 +24,14 @@ export const Contact = () => {
     e.preventDefault();
     sessionStorage.setItem('file', selectedFile)
     const body_data = await toBase64(selectedFile)
-    /*let response = await fetch("http://localhost:5000/contact", {
+    let response = await fetch("http://localhost:80/historia/historia", {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: body_data,
     });
-    sessionStorage.setItem('graph_data', response)*/
+    sessionStorage.setItem('graph_data', response)
     setButtonText("Sending...");
     setButtonText("Send");
     navigate('/Actions');
