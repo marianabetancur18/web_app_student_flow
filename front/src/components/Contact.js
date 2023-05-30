@@ -13,10 +13,25 @@ export const Contact = () => {
   const [status, setStatus] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     sessionStorage.setItem('file', selectedFile)
-    console.log(selectedFile)
+    const body_data = await toBase64(selectedFile)
+    /*let response = await fetch("http://localhost:5000/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: body_data,
+    });
+    sessionStorage.setItem('graph_data', response)*/
     setButtonText("Sending...");
     setButtonText("Send");
     navigate('/Actions');

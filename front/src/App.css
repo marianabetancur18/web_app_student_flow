@@ -502,6 +502,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   z-index: -4;
 }
 
+/************ Progress Css ************/
+.progress {
+  margin-top: 0;
+  padding: 260px 0 800px 0;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.965)
+}
+
 /************ Projects Css ************/
 .contact {
   background: rgba(255, 255, 255, 0.965);
