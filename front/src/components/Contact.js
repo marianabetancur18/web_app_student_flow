@@ -23,13 +23,11 @@ export const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     sessionStorage.setItem('file', selectedFile)
-    const body_data = await toBase64(selectedFile)
+    //const body_data = await toBase64(selectedFile)
+    console.log(selectedFile)
     let response = await fetch("http://localhost:80/historia/historia", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: body_data,
+      body: selectedFile,
     });
     sessionStorage.setItem('graph_data', response)
     setButtonText("Sending...");
