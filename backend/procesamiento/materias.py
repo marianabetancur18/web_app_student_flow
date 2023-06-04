@@ -244,4 +244,76 @@ def estimado_semestres_faltantes(materias_cursadas: pd.DataFrame) -> str:
     return semestres_faltantes
  
 
+def grafo_materias_cursadas(materias_cursadas: pd.DataFrame) -> dict:
+    pensum = obtener_pensum()
 
+    # requesitos
+    requesitos = pd.merge(
+        materias_cursadas[['CODIGO']],
+        pensum[['CODIGO', 'PRERREQUISITOS']],
+        on='CODIGO')
+
+    requesitos_lista = []
+    id_ = 1
+
+    for index, row in requesitos.iterrows():
+        prerrequisitos = row['PRERREQUISITOS'].strip('][').split(', ')
+
+        if prerrequisitos == ['']:
+            prerrequisitos = []
+
+        for i in prerrequisitos:
+            requesitos_lista.append({"id": f'e{id_}', "source": row['CODIGO'],
+                                     "target": i.strip('\''),
+                                     "type": "smoothstep", "animated": True})
+            id_ += 1
+
+    # materias
+
+    materias_lista = []
+    for index, row in materias_cursadas.iterrows():
+        materias_lista.append(
+            {"id": row['CODIGO'], "data": {"label": row['NOMBRE']}})
+
+    grafo = {
+        "materias": materias_lista,
+        "requisitos": requesitos_lista
+    }
+
+    return grafo
+
+
+def grafo_pensum() -> dict:
+    pensum = obtener_pensum()
+
+    # requesitos
+    requesitos = pensum[['CODIGO', 'PRERREQUISITOS']]
+
+    requesitos_lista = []
+    id_ = 1
+
+    for index, row in requesitos.iterrows():
+        prerrequisitos = row['PRERREQUISITOS'].strip('][').split(', ')
+
+        if prerrequisitos == ['']:
+            prerrequisitos = []
+
+        for i in prerrequisitos:
+            requesitos_lista.append({"id": f'e{id_}', "source": row['CODIGO'],
+                                     "target": i.strip('\''),
+                                     "type": "smoothstep", "animated": True})
+            id_ += 1
+
+    # materias
+
+    materias_lista = []
+    for index, row in pensum.iterrows():
+        materias_lista.append(
+            {"id": row['CODIGO'], "data": {"label": row['NOMBRE']}})
+
+    grafo = {
+        "materias": materias_lista,
+        "requisitos": requesitos_lista
+    }
+
+    return grafo
