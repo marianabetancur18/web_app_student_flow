@@ -143,7 +143,7 @@ def lista_materias_faltantes(
 
 def porcentaje_avance(materias_cursadas: pd.DataFrame):
     """
-    
+
     Obtiene el porcentaje por tipología de materia.
 
 
@@ -172,8 +172,8 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
 
     PENSUM_TRABAJO_GRADO=6
     PENSUM_COMPONENTE_DISCIPLINAR=PENSUM_DISCIPLINAR_TOTAL+PENSUM_TRABAJO_GRADO
-    
-    
+
+
     PENSUM_FUDAMENTACION_OBLIGATORIA=27
     PENSUM_FUDAMENTACION_OPTATIVA=16
     PENSUM_FUNDAMENTACION_TOTAL=PENSUM_FUDAMENTACION_OPTATIVA+PENSUM_FUDAMENTACION_OBLIGATORIA
@@ -183,7 +183,7 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
     PENSUM_CARRERA_TOTAL=PENSUM_LIBRE_ELECCION_TOTAL+PENSUM_COMPONENTE_DISCIPLINAR+PENSUM_FUNDAMENTACION_TOTAL
 
     creditos_cursados_libre_eleccion_total=materias_cursadas[materias_cursadas["TIPO"]=="LIBRE ELECCIÓN"]["CREDITOS"].sum(axis=0)
-    
+
     creditos_cursados_disciplinar_optativa=materias_cursadas[materias_cursadas["TIPO"]=="DISCIPLINAR OPTATIVA"]["CREDITOS"].sum(axis=0)
     creditos_cursados_disciplinar_obligatoria=materias_cursadas[materias_cursadas["TIPO"]=="DISCIPLINAR OBLIGATORIA"]["CREDITOS"].sum(axis=0)
     creditos_cursados_disciplinar_total = creditos_cursados_disciplinar_obligatoria + creditos_cursados_disciplinar_optativa
@@ -199,22 +199,22 @@ def porcentaje_avance(materias_cursadas: pd.DataFrame):
 
     creditos_cursados_carrera_total= creditos_cursados_fundamentacion_total + creditos_cursados_componente_disciplinar + creditos_cursados_libre_eleccion_total
 
-    
+
     calculo_porcentaje_avance = lambda cursado, en_pensum: f'{round(cursado*100/en_pensum,1)} %'
 
 
-    
+
     porcentajes_de_avance ={
         "avance_componente_disciplinar":calculo_porcentaje_avance(creditos_cursados_componente_disciplinar,PENSUM_COMPONENTE_DISCIPLINAR),
-        
+
         "avance_disciplinar_total": calculo_porcentaje_avance(creditos_cursados_disciplinar_total,PENSUM_DISCIPLINAR_TOTAL),
         "avance_disciplinar_optativa": calculo_porcentaje_avance(creditos_cursados_disciplinar_optativa,PENSUM_DISCIPLINAR_OPTATIVA),
         "avance_disciplinar_obligatoria": calculo_porcentaje_avance(creditos_cursados_disciplinar_obligatoria,PENSUM_DISCIPLINAR_OBLIGATORIA),
-        
+
         "avance_fundamentacion_total": calculo_porcentaje_avance(creditos_cursados_fundamentacion_total,PENSUM_FUNDAMENTACION_TOTAL),
         "avance_fundamentacion_obligatoria": calculo_porcentaje_avance(creditos_cursados_fundamentacion_obligatoria,PENSUM_FUDAMENTACION_OBLIGATORIA),
         "avance_fundamentacion_optativa": calculo_porcentaje_avance(creditos_cursados_fundamentacion_optativa,PENSUM_FUDAMENTACION_OPTATIVA),
-        
+
         "avance_libre_eleccion_total": calculo_porcentaje_avance(creditos_cursados_libre_eleccion_total,PENSUM_LIBRE_ELECCION_TOTAL),
 
         "avance_total_carrera": calculo_porcentaje_avance(creditos_cursados_carrera_total,PENSUM_CARRERA_TOTAL)
@@ -235,13 +235,13 @@ def estimado_semestres_faltantes(materias_cursadas: pd.DataFrame) -> str:
 
     """
     pensum = obtener_pensum()
-    semestres_cursados = len(materias_cursadas['PERIODO'].unique()) - 1 # Se resta uno porque sale este semestre  
+    semestres_cursados = len(materias_cursadas['PERIODO'].unique()) - 1 # Se resta uno porque sale este semestre
     creditos_cursados = materias_cursadas['CREDITOS'].sum(axis = 0)
     promedio_creditos = creditos_cursados / semestres_cursados
     creditos_pensum = 168
     creditos_faltantes = creditos_pensum - creditos_cursados
     semestres_faltantes = str(int(creditos_faltantes/promedio_creditos))
     return semestres_faltantes
- 
+
 
 
