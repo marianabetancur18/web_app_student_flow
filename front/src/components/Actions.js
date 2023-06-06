@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 export const Actions = () => {
 
   const navigate = useNavigate();
+  let parametros = sessionStorage.getItem('file') 
   console.log(sessionStorage.getItem('file'))
   const responsive = {
     superLargeDesktop: {
@@ -48,7 +49,7 @@ export const Actions = () => {
                                 <h5>Progresos</h5>
                             </div>
                             <div className="item">
-                                <img src={meter2} alt="Image" />
+                                <img src={meter2} alt="Image" onClick={() => navigate('/Status',{state:parametros})}/>
                                 <h5>Verifica status estudiante</h5>
                             </div>
                             <div className="item">

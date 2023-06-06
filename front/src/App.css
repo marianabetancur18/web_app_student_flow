@@ -510,6 +510,46 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   background-color: rgba(255, 255, 255, 0.965)
 }
 
+/************ Progress Css ************/
+.status {
+  margin-top: 0;
+  padding: 260px 0 800px 0;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.965)
+}
+
+.status h1 {
+  font-size: 65px;
+  color:#000000;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.status h2 {
+  font-size: 50px;
+  color:#000000;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.status img {
+  width: 10%;
+  margin: 0 auto 10px auto;
+}
+
+.status p {
+  color: #000000;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  line-height: 1.5em;
+  width: 96%;
+}
 /************ Projects Css ************/
 .contact {
   background: rgba(255, 255, 255, 0.965);
