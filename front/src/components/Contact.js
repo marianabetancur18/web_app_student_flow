@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import contactImg from "../assets/img/contact-img.svg";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
-import { useNavigate } from 'react-router-dom';
+import { Await, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 
@@ -33,8 +33,8 @@ export const Contact = () => {
       headers: {
         'Content-Type': "multipart/form-data",
       }
-    });
-    sessionStorage.setItem('graph_data', response)
+    })
+    sessionStorage.setItem('graph_data', JSON.stringify(response.data));
     setButtonText("Sending...");
     setButtonText("Send");
     navigate('/Actions');
