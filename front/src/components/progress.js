@@ -14,16 +14,29 @@ import ReactFlow, {
 } from 'reactflow';
 
 import 'reactflow/dist/style.css';
-const file = JSON.parse(sessionStorage.getItem('graph_data'));
-console.log(file);
+
+/*const file = sessionStorage.getItem('grafo_pensum');
 const position = { x: 0, y: 0 };
-var file_materias = file.materias;
+//var file_materias = file.grafo_pensum.materias;
+var file_materias = [
+  {
+      "id": "Programacion Orientada a Objetos",
+      "data": { "label": "Programacion Orientada a Objetos" }
+  },
+  {
+      "id": "Catedra Antioquia",
+      "data": { "label": "Catedra Antioquia" }
+  }
+];
 file_materias.forEach(materia => {
   materia['position'] = position
 });
 const initialNodes = file_materias;
-const initialEdges = file.requesitos;
-
+const initialEdges = [
+  {"id": "e1", "source": "Programacion Orientada a Objetos", "target":"Catedra Antioquia", "type": "smoothstep", "animated": true}
+];
+//const initialEdges = file.grafo_pensum.requisitos;*/
+const position = { x: 0, y: 0 };
 const dagreGraph = new dagre.graphlib.Graph();
 dagreGraph.setDefaultEdgeLabel(() => ({}));
 
@@ -61,12 +74,26 @@ const getLayoutedElements = (nodes, edges, direction = 'TB') => {
   return { nodes, edges };
 };
 
-const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+/*const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
   initialNodes,
   initialEdges
-);
+);*/
 
 export const Progress_graph = () => {
+  const file = JSON.parse(sessionStorage.getItem('grafo_pensum'));
+  console.log(typeof(file))
+  var file_materias = file.materias;
+  file_materias.forEach(materia => {
+    materia['position'] = position
+  });
+  const initialNodes = file_materias;
+  const initialEdges = file.requisitos;
+
+  const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
+    initialNodes,
+    initialEdges
+  );
+
   const [nodes, setNodes, onNodesChange] = useNodesState(layoutedNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(layoutedEdges);
 

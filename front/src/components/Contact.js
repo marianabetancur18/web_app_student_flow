@@ -34,7 +34,14 @@ export const Contact = () => {
         'Content-Type': "multipart/form-data",
       }
     })
-    sessionStorage.setItem('graph_data', JSON.stringify(response.data));
+    sessionStorage.setItem('general_response', JSON.stringify(response.data));
+    console.log(response.data);
+    sessionStorage.setItem('grafo_materias_cursadas', JSON.stringify(response.data.lista_materias_cursadas));
+    sessionStorage.setItem('grafo_pensum', JSON.stringify(response.data.grafo_pensum));
+    sessionStorage.setItem('lista_materias_cursadas', JSON.stringify(response.data.lista_materias_cursadas));
+    sessionStorage.setItem('materias_faltantes', JSON.stringify(response.data.materias_faltantes));
+    sessionStorage.setItem('porcentaje_avance', JSON.stringify(response.data.porcentaje_avance));
+    sessionStorage.setItem('estimado_semestres_faltantes', JSON.stringify(response.data.estimado_semestres_faltantes));
     setButtonText("Sending...");
     setButtonText("Send");
     navigate('/Actions');
