@@ -8,7 +8,7 @@ def obtener_pensum() -> pd.DataFrame:
     Returns:
         un DataFrame con las columnas ['CODIGO', 'NOMBRE', 'CREDITOS', 'TIPO', 'PRERREQUISITOS']
     """
-    ruta_historia = os.path.join(os.getcwd(), 'backend', 'files', 'pensum.csv')
+    ruta_historia = os.path.join(os.getcwd(), 'files', 'pensum.csv')
     pensum = pd.read_csv(ruta_historia)
 
     return pensum

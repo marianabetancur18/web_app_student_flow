@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: Dockerfile-back
     ports:
-      - "80:80"
+      - "8000:80"
     restart: "always"
     networks:
     - web_app
