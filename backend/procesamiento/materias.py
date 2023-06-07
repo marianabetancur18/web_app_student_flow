@@ -283,7 +283,7 @@ def grafo_materias_cursadas(materias_cursadas: pd.DataFrame) -> dict:
     return grafo
 
 
-def grafo_pensum() -> dict:
+def grafo_pensum(materias_cursadas) -> dict:
     pensum = obtener_pensum()
 
     # requesitos
@@ -304,12 +304,30 @@ def grafo_pensum() -> dict:
                                      "type": "smoothstep", "animated": True})
             id_ += 1
 
+    materias_cursadas['CURSADA'] = True
     # materias
 
+    grafo = pd.merge(
+        pensum[['CODIGO', 'PRERREQUISITOS', 'NOMBRE']],
+        materias_cursadas[['CODIGO', 'CURSADA']],
+        on='CODIGO',
+        how='left').fillna(False)
+
+    style = {
+        False: '#808080',
+        True: '#81F79F'
+    }
+    grafo['style'] = grafo['CURSADA'].map(style)
+
     materias_lista = []
-    for index, row in pensum.iterrows():
+    for index, row in grafo.iterrows():
         materias_lista.append(
-            {"id": row['CODIGO'], "data": {"label": row['NOMBRE']}})
+            {
+                "id": row['CODIGO'],
+                "data": {"label": row['NOMBRE']},
+                "style": {'backgroundColor': row['style']}
+            }
+        )
 
     grafo = {
         "materias": materias_lista,
