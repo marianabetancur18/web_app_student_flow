@@ -19,7 +19,7 @@ def procesar_historia(historia_academica: str):
         'porcentaje_avance': porcentaje_avance(materias_cursadas),
         'estimado_semestres_faltantes': estimado_semestres_faltantes(materias_cursadas),
         'grafo_materias_cursadas': grafo_materias_cursadas(materias_cursadas),
-        'grafo_pensum': grafo_pensum()
+        'grafo_pensum': grafo_pensum(materias_cursadas)
     }
 
     return respuesta
