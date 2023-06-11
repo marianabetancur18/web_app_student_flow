@@ -9,7 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export const Student_status = () => {
-
+  const cursadas = JSON.parse(sessionStorage.getItem('lista_materias_cursadas'));
+  const faltantes = JSON.parse(sessionStorage.getItem('materias_faltantes'));
 
 
   return (
