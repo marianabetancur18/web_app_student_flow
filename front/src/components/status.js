@@ -11,11 +11,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export const Student_status = () => {
   const cursadas = JSON.parse(sessionStorage.getItem('lista_materias_cursadas'));
   const faltantes = JSON.parse(sessionStorage.getItem('materias_faltantes'));
-  const porcentaje = JSON.parse(sessionStorage.getItem('porcentaje_avance'));
+  const porcentaje_avance = JSON.parse(sessionStorage.getItem('porcentaje_avance'));
 
   console.log(faltantes.faltantes_obligatorias)
 
-  const DisplayPorcentajesAvance=porcentaje.map(
+  const DisplayPorcentajesAvance=porcentaje_avance.map(
     (info)=>{
         return(
             <tr>
