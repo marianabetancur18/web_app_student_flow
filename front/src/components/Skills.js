@@ -46,14 +46,6 @@ export const Skills = () => {
                                 <img src={meter2} alt="Image" />
                                 <h5>Verifica status estudiante</h5>
                             </div>
-                            <div className="item">
-                                <img src={meter3} alt="Image" />
-                                <h5>Lista asignaturas</h5>
-                            </div>
-                            <div className="item">
-                                <img src={meter4} alt="Image" />
-                                <h5>Validación procesos</h5>
-                            </div>
                         </Carousel>
                     </div>
                 </div>
